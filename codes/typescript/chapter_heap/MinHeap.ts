@@ -55,6 +55,11 @@ export class MinHeap {
         return this.heap.length === 0
     }
 
+    /* 取出堆中元素 */
+    getMaxHeap(): number[] {
+        return this.heap;
+    }
+
     private swap(i, j) {
         let tmp = this.heap[i]
         this.heap[i] = this.heap[j]
