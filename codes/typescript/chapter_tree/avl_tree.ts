@@ -219,4 +219,4 @@ testRemove(avlTree, 4); // 删除度为 2 的节点
 const node = avlTree.search(7);
 console.log('\n查找到的节点对象为', node, '，节点值 = ' + node.val);
 
-export {};
+export { };

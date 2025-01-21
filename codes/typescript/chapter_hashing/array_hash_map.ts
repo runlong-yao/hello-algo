@@ -131,4 +131,4 @@ for (const val of map.values()) {
     console.info(val);
 }
 
-export {};
+export { };

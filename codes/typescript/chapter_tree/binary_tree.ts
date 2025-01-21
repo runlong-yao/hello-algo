@@ -34,4 +34,4 @@ n1.left = n2;
 console.log('\n删除节点 P 后\n');
 printTree(n1);
 
-export {};
+export { };

@@ -25,73 +25,85 @@ class ArrayBinaryTree {
 
     /* 获取索引为 i 节点的值 */
     val(i: number): number | null {
-        // 若索引越界，则返回 null ，代表空位
-        if (i < 0 || i >= this.size()) return null;
-        return this.#tree[i];
+        return this.#tree[i] ?? null
     }
 
     /* 获取索引为 i 节点的左子节点的索引 */
     left(i: number): number {
-        return 2 * i + 1;
+        return 2 * i + 1
     }
 
     /* 获取索引为 i 节点的右子节点的索引 */
     right(i: number): number {
-        return 2 * i + 2;
+        return 2 * i + 2
+
     }
 
     /* 获取索引为 i 节点的父节点的索引 */
     parent(i: number): number {
-        return Math.floor((i - 1) / 2); // 向下整除
+        return Math.floor((i - 1) / 2)
+
     }
 
-
-    //      1
-    //   2      3
-    // 4  5   6   7
     /* 层序遍历 */
     levelOrder(): number[] {
-        let res = [];
-        // 直接遍历数组
-        for (let i = 0; i < this.size(); i++) {
-            if (this.val(i) !== null) res.push(this.val(i));
-        }
-        return res;
+        return this.#tree
     }
 
     /* 深度优先遍历 */
     #dfs(i: number, order: Order, res: (number | null)[]): void {
-        // 若为空位，则返回
-        if (this.val(i) === null) return;
-        // 前序遍历
-        if (order === 'pre') res.push(this.val(i));
-        this.#dfs(this.left(i), order, res);
-        // 中序遍历
-        if (order === 'in') res.push(this.val(i));
-        this.#dfs(this.right(i), order, res);
-        // 后序遍历
-        if (order === 'post') res.push(this.val(i));
+
+        if (i >= this.#tree.length) return
+
+        switch (order) {
+            case 'pre': {
+                res.push(this.#tree[i])
+                this.#dfs(this.left(i), order, res)
+                this.#dfs(this.right(i), order, res)
+                break;
+            }
+            case 'in': {
+                this.#dfs(this.left(i), order, res)
+                res.push(this.#tree[i])
+                this.#dfs(this.right(i), order, res)
+                break;
+            }
+            case 'post': {
+                this.#dfs(this.left(i), order, res)
+                this.#dfs(this.right(i), order, res)
+                res.push(this.#tree[i])
+                break;
+            }
+        }
+
+
     }
 
     /* 前序遍历 */
     preOrder(): (number | null)[] {
-        const res = [];
-        this.#dfs(0, 'pre', res);
-        return res;
+        let list: number[]
+
+        this.#dfs(0, 'pre', (list = []))
+
+        return list
     }
 
     /* 中序遍历 */
     inOrder(): (number | null)[] {
-        const res = [];
-        this.#dfs(0, 'in', res);
-        return res;
+        let list: number[]
+
+        this.#dfs(0, 'in', (list = []))
+
+        return list
     }
 
     /* 后序遍历 */
     postOrder(): (number | null)[] {
-        const res = [];
-        this.#dfs(0, 'post', res);
-        return res;
+        let list: number[]
+
+        this.#dfs(0, 'post', (list = []))
+
+        return list
     }
 }
 
