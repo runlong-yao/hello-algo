@@ -48,4 +48,4 @@ const nums1 = [4, 1, 3, 1, 5, 2];
 bubbleSortWithFlag(nums1);
 console.log('冒泡排序完成后 nums =', nums1);
 
-export {};
+export { };

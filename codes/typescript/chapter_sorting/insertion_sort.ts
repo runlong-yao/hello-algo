@@ -24,4 +24,4 @@ const nums = [4, 1, 3, 1, 5, 2];
 insertionSort(nums);
 console.log('插入排序完成后 nums =', nums);
 
-export {};
+export { };

@@ -129,4 +129,4 @@ console.log(`从左上角到右下角的最小路径和为 ${res}`);
 res = minPathSumDPComp(grid);
 console.log(`从左上角到右下角的最小路径和为 ${res}`);
 
-export {};
+export { };
